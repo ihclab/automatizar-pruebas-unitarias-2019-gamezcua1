@@ -14,7 +14,7 @@ end
 File.readlines(pruebas_file_path).each do |line|
   test_case = Helpers.get_test_params line    # Caso de prueba
   values = Helpers.get_values test_case[2]    # Parámetros que nuestras funciones recibirán
-  waited_reult = Helpers.result_to_double test_case[3]
+  waited_reult = Helpers.result_to_double test_case[3]  # Resultado esperado en la prueba
 
   begin
     method_exists = true

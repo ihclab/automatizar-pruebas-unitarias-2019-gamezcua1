@@ -5,6 +5,9 @@ module Helpers
   end
 
   def self.get_values values
+    if values == "NULL"
+      return nil
+    end
     values.split(' ').map(&:to_i)
   end
 
