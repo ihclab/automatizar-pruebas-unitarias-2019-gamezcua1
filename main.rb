@@ -1,6 +1,7 @@
 require_relative "Medias"
 
 require_relative "Medias"
+require_relative "Helpers"
 
 pruebas_file_path = ARGV[0]
 
@@ -10,5 +11,6 @@ if pruebas_file_path == nil
 end
 
 File.readlines(pruebas_file_path).each do |line|
-  print line
+  test_case = Helpers.get_test_params line
+  p test_case
 end
