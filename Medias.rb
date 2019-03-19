@@ -1,24 +1,19 @@
 class Medias
     def self.mediaAritmetica vals
-        (vals.reduce(:+)) / vals.length.to_f
+        ((vals.reduce(:+)).to_f / vals.length.to_f).round(4)
     end
-    
+
     def self.mediaGeometrica vals
-        sum = 1.0
-        vals.each { |val| sum*=val.to_f }
-        sum**(1 / vals.length.to_f)
+        (raizEnesima vals.reduce(:*).to_f, vals.length.to_f).round(4)
     end
-    
+
     def self.mediaArmonica vals
-        sum = 0
-        vals.each { |val| sum += 1/val.to_f }
-        vals.length / sum
     end
-    
+
     private
 
     def self.raizEnesima x, n
-
+        x.to_f ** (1 / n.to_f)
     end
-    
+
 end
