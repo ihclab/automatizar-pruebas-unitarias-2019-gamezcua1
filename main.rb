@@ -2,6 +2,7 @@ require_relative "Medias"
 
 require_relative "Medias"
 require_relative "Helpers"
+require_relative "Asserts"
 
 pruebas_file_path = ARGV[0]
 
@@ -15,7 +16,15 @@ File.readlines(pruebas_file_path).each do |line|
   values = Helpers.get_values test_case[2]    # Parámetros que nuestras funciones recibirán
   waited_reult = Helpers.result_to_double test_case[3]
 
-  p test_case
-  p values
-  p waited_reult
+  begin
+    method_exists = true
+    res = Medias.send(test_case[1], values)
+    assert = Asserts.assertEqual res, waited_reult
+
+    p assert ? "Éxito" : "*Falla*"
+  rescue
+    method_exists = false
+    p "Método no existe"
+  end
+
 end
