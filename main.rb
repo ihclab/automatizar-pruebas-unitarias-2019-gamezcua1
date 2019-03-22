@@ -23,14 +23,19 @@ begin
     waited_reult = Helpers.result_to_double test_case[3]  # Resultado esperado en la prueba
 
     begin
+      start = Time.now
       res = Medias.send(test_case[1], values)
-      assert = Asserts.assertEqual res, waited_reult
+      execution_time = ((Time.now - start) * 1000).round(6)
 
+      assert = Asserts.assertEqual res, waited_reult
       if assert
-        puts "#{test_case[0]}\t#{ "Éxito".green }\t\t#{test_case[1]}\t\tCalculado = #{res}"
+        puts "#{test_case[0]}\t#{ "Éxito".green }\t\t#{test_case[1]}\t\t"\
+             "Calculado = #{res} T.E: #{ execution_time } ms"
         success += 1
       else
-        puts "#{test_case[0]}\t#{ "Falla".red }\t\t#{test_case[1]}\t\tCalculado = #{res} \t Esperado = #{test_case[3]}"
+        puts "#{test_case[0]}\t#{ "Falla".red }\t\t#{test_case[1]}\t\t"\
+             "Calculado = #{res}  Esperado = #{waited_reult} "\
+             "T.E: #{ execution_time } ms"
         failed += 1
       end
     rescue NoMethodError
