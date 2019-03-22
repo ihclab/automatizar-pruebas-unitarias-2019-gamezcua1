@@ -14,7 +14,7 @@ class Medias
     end
 
     def self.mediaArmonica vals
-      puts "Método no implementado"
+      raise NotImplementedError, "Método no implementado"
     end
 
     private
